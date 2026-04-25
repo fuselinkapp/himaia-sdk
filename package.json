@@ -1,7 +1,7 @@
 {
-  "name": "@maia/sdk",
+  "name": "himaia-sdk",
   "version": "0.1.0",
-  "description": "TypeScript SDK for the Maia Voice API. Wraps /v1/generate and /v1/personas. Apache-2.0.",
+  "description": "TypeScript SDK for the himaia voice API. Wraps /v1/generate and /v1/personas. Apache-2.0.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -31,9 +31,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/fuselinkapp/maia-sdk",
+  "homepage": "https://github.com/fuselinkapp/himaia-sdk",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fuselinkapp/maia-sdk.git"
+    "url": "git+https://github.com/fuselinkapp/himaia-sdk.git"
   }
 }

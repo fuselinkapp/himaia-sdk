@@ -1,19 +1,19 @@
-// MaiaError — all SDK-thrown errors funnel through this single class.
+// HimaiaError — all SDK-thrown errors funnel through this single class.
 // No per-status taxonomy until a real consumer asks for one — premature
 // abstraction risk is higher than the cost of one extra status check.
 
-export class MaiaError extends Error {
+export class HimaiaError extends Error {
   status: number;
   code: string | undefined;
 
   constructor(message: string, status: number, code?: string) {
     super(message);
-    this.name = "MaiaError";
+    this.name = "HimaiaError";
     this.status = status;
     if (code !== undefined) this.code = code;
   }
 
-  static async fromResponse(res: Response): Promise<MaiaError> {
+  static async fromResponse(res: Response): Promise<HimaiaError> {
     const status = res.status;
     let body = "";
     try {
@@ -34,6 +34,6 @@ export class MaiaError extends Error {
         // not JSON — keep the raw text
       }
     }
-    return new MaiaError(message, status, code);
+    return new HimaiaError(message, status, code);
   }
 }

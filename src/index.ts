@@ -1,10 +1,10 @@
-// @maia/sdk — TypeScript client for the Maia Voice API.
-// Apache-2.0. https://github.com/fuselinkapp/maia-sdk
+// himaia-sdk — TypeScript client for the himaia voice API.
+// Apache-2.0. https://github.com/fuselinkapp/himaia-sdk
 
-export { MaiaClient } from "./client.js";
-export type { MaiaClientOptions } from "./client.js";
+export { HimaiaClient } from "./client.js";
+export type { HimaiaClientOptions } from "./client.js";
 
-export { MaiaError } from "./errors.js";
+export { HimaiaError } from "./errors.js";
 
 export type {
   Mode,

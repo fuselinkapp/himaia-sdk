@@ -6,8 +6,8 @@ First public release. Apache-2.0.
 
 ### Surface
 
-- `MaiaClient` class with `listPersonas()` and `generate()` methods.
-- `MaiaError` with `status` and `code` fields.
+- `HimaiaClient` class with `listPersonas()` and `generate()` methods.
+- `HimaiaError` with `status` and `code` fields.
 - TypeScript types matching the API contract: `BasicRequest`,
   `VoicedRequest`, `CinematicRequest` (discriminated by `mode`),
   `GenerateResult`, `ListPersonasResult`, `StarterSummary`,
@@ -23,7 +23,7 @@ First public release. Apache-2.0.
 
 ### Examples
 
-- `examples/react-player.tsx` — 50-line `MaiaPlayer` component.
+- `examples/react-player.tsx` — 50-line `HimaiaPlayer` component.
 
 ### Known gaps
 

@@ -1,4 +1,4 @@
-// Public types for @maia/sdk. Mirrors the API contract documented in
+// Public types for himaia-sdk. Mirrors the API contract documented in
 // `apps/api/src/routes/generate.ts` and `apps/api/src/routes/personas.ts`.
 
 export type Mode = "basic" | "voiced" | "pro";
@@ -41,7 +41,7 @@ export type BasicRequest = {
 
 export type VoicedRequest = {
   mode: "voiced";
-  persona: string; // "maia/<slug>" or "maia/<slug>@<version>"
+  persona: string; // "himaia/<slug>" or "himaia/<slug>@<version>"
   input: string;
   scene?: SceneInput;
   voice?: string;
@@ -90,7 +90,7 @@ export type BuiltinPersona = {
 };
 
 export type StarterSummary = {
-  id: string; // "maia/<slug>"
+  id: string; // "himaia/<slug>"
   version: string;
   name: string;
   tagline: string;

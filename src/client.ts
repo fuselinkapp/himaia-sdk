@@ -1,4 +1,4 @@
-import { MaiaError } from "./errors.js";
+import { HimaiaError } from "./errors.js";
 import type {
   GenerateRequest,
   GenerateResult,
@@ -7,8 +7,8 @@ import type {
 
 const DEFAULT_BASE_URL = "https://api.himaia.dev";
 
-export type MaiaClientOptions = {
-  /** Bearer token from the Maia dashboard. */
+export type HimaiaClientOptions = {
+  /** Bearer token from the himaia dashboard. */
   apiKey: string;
   /** Override the API origin. Defaults to https://api.himaia.dev. */
   baseUrl?: string;
@@ -16,13 +16,13 @@ export type MaiaClientOptions = {
   fetch?: typeof fetch;
 };
 
-export class MaiaClient {
+export class HimaiaClient {
   private readonly apiKey: string;
   private readonly baseUrl: string;
   private readonly fetchImpl: typeof fetch;
 
-  constructor(opts: MaiaClientOptions) {
-    if (!opts?.apiKey) throw new Error("MaiaClient: apiKey is required");
+  constructor(opts: HimaiaClientOptions) {
+    if (!opts?.apiKey) throw new Error("HimaiaClient: apiKey is required");
     this.apiKey = opts.apiKey;
     this.baseUrl = (opts.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, "");
     // `window.fetch` / `globalThis.fetch` must be called with the global as
@@ -32,7 +32,7 @@ export class MaiaClient {
     const rawFetch = opts.fetch ?? globalThis.fetch;
     if (typeof rawFetch !== "function") {
       throw new Error(
-        "MaiaClient: no fetch available. Pass `fetch` in options on a runtime that doesn't ship it.",
+        "HimaiaClient: no fetch available. Pass `fetch` in options on a runtime that doesn't ship it.",
       );
     }
     this.fetchImpl = opts.fetch ?? rawFetch.bind(globalThis);
@@ -45,7 +45,7 @@ export class MaiaClient {
     const res = await this.fetchImpl(`${this.baseUrl}/v1/personas`, {
       headers: { Authorization: `Bearer ${this.apiKey}` },
     });
-    if (!res.ok) throw await MaiaError.fromResponse(res);
+    if (!res.ok) throw await HimaiaError.fromResponse(res);
     const body = (await res.json()) as Partial<ListPersonasResult>;
     return {
       personas: body.personas ?? [],
@@ -66,7 +66,7 @@ export class MaiaClient {
       },
       body: JSON.stringify(req),
     });
-    if (!res.ok) throw await MaiaError.fromResponse(res);
+    if (!res.ok) throw await HimaiaError.fromResponse(res);
 
     const audio = await res.blob();
     const headers = lowercaseHeaders(res.headers);

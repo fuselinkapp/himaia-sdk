@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { MaiaClient, MaiaError } from "../dist/index.js";
+import { HimaiaClient, HimaiaError } from "../dist/index.js";
 
 // Tiny fetch mock — controls (status, headers, body) per call.
 function mockFetch(plan) {
@@ -28,13 +28,13 @@ function mockFetch(plan) {
 
 test("listPersonas returns {personas, starters}", async () => {
   const { fn, calls } = mockFetch({
-    body: { personas: [{ id: "mentor" }], starters: [{ id: "maia/warm_confidant" }] },
+    body: { personas: [{ id: "mentor" }], starters: [{ id: "himaia/warm_confidant" }] },
   });
-  const client = new MaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
   const result = await client.listPersonas();
   assert.equal(result.personas.length, 1);
   assert.equal(result.starters.length, 1);
-  assert.equal(calls[0].url, "https://api.maia.sh/v1/personas");
+  assert.equal(calls[0].url, "https://api.himaia.dev/v1/personas");
   assert.equal(calls[0].init.headers.Authorization, "Bearer mvk_test_x");
 });
 
@@ -47,10 +47,10 @@ test("generate posts the right body and parses response headers", async () => {
       "x-maia-charge-cents": "7",
     },
   });
-  const client = new MaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
   const result = await client.generate({
     mode: "voiced",
-    persona: "maia/warm_confidant",
+    persona: "himaia/warm_confidant",
     input: "It's been a long week.",
     scene: { format: "comfort", dialogue_act: "reassure" },
   });
@@ -61,21 +61,21 @@ test("generate posts the right body and parses response headers", async () => {
 
   const sent = JSON.parse(calls[0].init.body);
   assert.equal(sent.mode, "voiced");
-  assert.equal(sent.persona, "maia/warm_confidant");
+  assert.equal(sent.persona, "himaia/warm_confidant");
   assert.deepEqual(sent.scene, { format: "comfort", dialogue_act: "reassure" });
   assert.equal(calls[0].init.headers["Content-Type"], "application/json");
 });
 
-test("non-2xx throws MaiaError with status + parsed body message", async () => {
+test("non-2xx throws HimaiaError with status + parsed body message", async () => {
   const { fn } = mockFetch({
     status: 402,
     body: { message: "insufficient balance (need ≥5¢)", code: "low_balance" },
   });
-  const client = new MaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
   await assert.rejects(
-    () => client.generate({ mode: "voiced", persona: "maia/warm_confidant", input: "x" }),
+    () => client.generate({ mode: "voiced", persona: "himaia/warm_confidant", input: "x" }),
     (err) =>
-      err instanceof MaiaError &&
+      err instanceof HimaiaError &&
       err.status === 402 &&
       /insufficient balance/.test(err.message) &&
       err.code === "low_balance",
@@ -84,7 +84,7 @@ test("non-2xx throws MaiaError with status + parsed body message", async () => {
 
 test("baseUrl override works", async () => {
   const { fn, calls } = mockFetch({ body: { personas: [], starters: [] } });
-  const client = new MaiaClient({
+  const client = new HimaiaClient({
     apiKey: "mvk_test_x",
     baseUrl: "http://localhost:8080",
     fetch: fn,
@@ -95,12 +95,12 @@ test("baseUrl override works", async () => {
 
 test("constructor rejects missing apiKey", () => {
   assert.throws(
-    () => new MaiaClient({ apiKey: "", fetch: globalThis.fetch }),
+    () => new HimaiaClient({ apiKey: "", fetch: globalThis.fetch }),
     /apiKey is required/,
   );
 });
 
-test("MaiaError.fromResponse handles a body that fails to read", async () => {
+test("HimaiaError.fromResponse handles a body that fails to read", async () => {
   // Mock a 500 whose .text() rejects (e.g. already-consumed stream).
   const fn = async () => ({
     ok: false,
@@ -110,9 +110,9 @@ test("MaiaError.fromResponse handles a body that fails to read", async () => {
     json: async () => ({}),
     blob: async () => new Blob([]),
   });
-  const client = new MaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
   await assert.rejects(
     () => client.listPersonas(),
-    (err) => err instanceof MaiaError && err.status === 500,
+    (err) => err instanceof HimaiaError && err.status === 500,
   );
 });

@@ -1,18 +1,18 @@
-// Minimal React example for @maia/sdk. Drop into a Vite/CRA project:
-//   npm install @maia/sdk
-// Then render <MaiaPlayer apiKey="mvk_live_..." />.
+// Minimal React example for himaia-sdk. Drop into a Vite/CRA project:
+//   npm install himaia-sdk
+// Then render <HimaiaPlayer apiKey="mvk_live_..." />.
 //
 // What it does: lists the v0.2 starter personas, lets the user pick one,
 // types an input, hits the API, and plays the returned audio. ~50 lines
 // of substance — everything else is JSX scaffolding.
 
 import { useEffect, useMemo, useState } from "react";
-import { MaiaClient, type StarterSummary } from "@maia/sdk";
+import { HimaiaClient, type StarterSummary } from "himaia-sdk";
 
-export function MaiaPlayer({ apiKey }: { apiKey: string }) {
+export function HimaiaPlayer({ apiKey }: { apiKey: string }) {
   // useMemo with [apiKey] — single client per apiKey value. Avoids the
-  // common `useRef(new MaiaClient(...))` trap that allocates per render.
-  const client = useMemo(() => new MaiaClient({ apiKey }), [apiKey]);
+  // common `useRef(new HimaiaClient(...))` trap that allocates per render.
+  const client = useMemo(() => new HimaiaClient({ apiKey }), [apiKey]);
   const [starters, setStarters] = useState<StarterSummary[]>([]);
   const [persona, setPersona] = useState("");
   const [input, setInput] = useState("It's been a long week and I don't know where to start.");
@@ -52,7 +52,7 @@ export function MaiaPlayer({ apiKey }: { apiKey: string }) {
 
   return (
     <div style={{ maxWidth: 480, fontFamily: "system-ui" }}>
-      <h2>Maia Voice — quick demo</h2>
+      <h2>himaia voice — quick demo</h2>
       <select value={persona} onChange={(e) => setPersona(e.target.value)} style={{ width: "100%" }}>
         {starters.map((s) => (
           <option key={s.id} value={s.id}>{s.name} — {s.tagline}</option>

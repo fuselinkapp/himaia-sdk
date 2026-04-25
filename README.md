@@ -1,25 +1,25 @@
-# @maia/sdk
+# himaia-sdk
 
-> TypeScript client for the Maia Voice API.
+> TypeScript client for the himaia voice API.
 
 Wraps `POST /v1/generate` and `GET /v1/personas`. Two methods, one
-`MaiaClient` class, fetch-based — runs in browsers, Node 18+, Bun,
+`HimaiaClient` class, fetch-based — runs in browsers, Node 18+, Bun,
 Deno, and edge runtimes.
 
-Apache-2.0. Source: [github.com/fuselinkapp/maia-sdk](https://github.com/fuselinkapp/maia-sdk).
+Apache-2.0. Source: [github.com/fuselinkapp/himaia-sdk](https://github.com/fuselinkapp/himaia-sdk).
 
 ## Install
 
 ```bash
-npm install @maia/sdk
+npm install himaia-sdk
 ```
 
 ## Quick start
 
 ```ts
-import { MaiaClient } from "@maia/sdk";
+import { HimaiaClient } from "himaia-sdk";
 
-const client = new MaiaClient({ apiKey: process.env.MAIA_KEY! });
+const client = new HimaiaClient({ apiKey: process.env.HIMAIA_KEY! });
 
 // Hear the starters.
 const { starters } = await client.listPersonas();
@@ -27,7 +27,7 @@ const { starters } = await client.listPersonas();
 // Speak.
 const { audio } = await client.generate({
   mode: "voiced",
-  persona: "maia/warm_confidant",
+  persona: "himaia/warm_confidant",
   input: "It's been a long week and I don't know where to start.",
 });
 
@@ -37,11 +37,11 @@ new Audio(url).play();
 
 ## API
 
-### `new MaiaClient(options)`
+### `new HimaiaClient(options)`
 
 | Option   | Type           | Default                | Notes |
 |----------|----------------|------------------------|-------|
-| `apiKey` | `string`       | required               | Bearer token from the [Maia dashboard](https://himaia.dev). |
+| `apiKey` | `string`       | required               | Bearer token from the [himaia dashboard](https://himaia.dev). |
 | `baseUrl`| `string`       | `https://api.himaia.dev`  | Override for self-hosted / staging. |
 | `fetch`  | `typeof fetch` | `globalThis.fetch`     | Inject for tests, polyfills, edge runtimes. |
 
@@ -50,7 +50,7 @@ new Audio(url).play();
 Returns `{ personas, starters }`:
 
 - `personas` — built-in TS roster used by the Pro pipeline.
-- `starters` — v0.2 YAML personas (`maia/<slug>`) used by Voiced.
+- `starters` — v0.2 YAML personas (`himaia/<slug>`) used by Voiced.
 
 ### `client.generate(req)` → `Promise<GenerateResult>`
 
@@ -74,15 +74,15 @@ Returns:
 
 ## Errors
 
-Every non-2xx throws `MaiaError`:
+Every non-2xx throws `HimaiaError`:
 
 ```ts
-import { MaiaError } from "@maia/sdk";
+import { HimaiaError } from "himaia-sdk";
 
 try {
-  await client.generate({ mode: "voiced", persona: "maia/warm_confidant", input: "" });
+  await client.generate({ mode: "voiced", persona: "himaia/warm_confidant", input: "" });
 } catch (err) {
-  if (err instanceof MaiaError) {
+  if (err instanceof HimaiaError) {
     console.error(err.status, err.code, err.message);
   }
   throw err;
@@ -100,8 +100,8 @@ generation wants exponential backoff).
 
 ## React example
 
-A 50-line `MaiaPlayer` component is in
-[`examples/react-player.tsx`](https://github.com/fuselinkapp/maia-sdk/blob/main/examples/react-player.tsx).
+A 50-line `HimaiaPlayer` component is in
+[`examples/react-player.tsx`](https://github.com/fuselinkapp/himaia-sdk/blob/main/examples/react-player.tsx).
 Drop it into Vite or CRA, pass an `apiKey` prop, done.
 
 ## What's not in here
@@ -115,7 +115,7 @@ Drop it into Vite or CRA, pass an `apiKey` prop, done.
 
 ## License
 
-Apache-2.0. See `LICENSE`. Made by [Maia](https://himaia.dev).
+Apache-2.0. See `LICENSE`. Made by [himaia](https://himaia.dev).
 
 The `voice.persona` spec the API consumes is also Apache-2.0:
-[github.com/fuselinkapp/maia-voice-persona](https://github.com/fuselinkapp/maia-voice-persona).
+[github.com/fuselinkapp/himaia-voice-persona](https://github.com/fuselinkapp/himaia-voice-persona).
