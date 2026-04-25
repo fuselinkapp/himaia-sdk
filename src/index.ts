@@ -1,5 +1,5 @@
 // @maia/sdk — TypeScript client for the Maia Voice API.
-// Apache-2.0. https://github.com/maia-voice/sdk
+// Apache-2.0. https://github.com/fuselinkapp/maia-sdk
 
 export { MaiaClient } from "./client.js";
 export type { MaiaClientOptions } from "./client.js";

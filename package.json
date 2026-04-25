@@ -31,9 +31,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/maia-voice/sdk",
+  "homepage": "https://github.com/fuselinkapp/maia-sdk",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maia-voice/sdk.git"
+    "url": "git+https://github.com/fuselinkapp/maia-sdk.git"
   }
 }

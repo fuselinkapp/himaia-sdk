@@ -6,7 +6,7 @@ Wraps `POST /v1/generate` and `GET /v1/personas`. Two methods, one
 `MaiaClient` class, fetch-based — runs in browsers, Node 18+, Bun,
 Deno, and edge runtimes.
 
-Apache-2.0. Source: [github.com/maia-voice/sdk](https://github.com/maia-voice/sdk).
+Apache-2.0. Source: [github.com/fuselinkapp/maia-sdk](https://github.com/fuselinkapp/maia-sdk).
 
 ## Install
 
@@ -101,7 +101,7 @@ generation wants exponential backoff).
 ## React example
 
 A 50-line `MaiaPlayer` component is in
-[`examples/react-player.tsx`](https://github.com/maia-voice/sdk/blob/main/examples/react-player.tsx).
+[`examples/react-player.tsx`](https://github.com/fuselinkapp/maia-sdk/blob/main/examples/react-player.tsx).
 Drop it into Vite or CRA, pass an `apiKey` prop, done.
 
 ## What's not in here
@@ -118,4 +118,4 @@ Drop it into Vite or CRA, pass an `apiKey` prop, done.
 Apache-2.0. See `LICENSE`. Made by [Maia](https://himaia.dev).
 
 The `voice.persona` spec the API consumes is also Apache-2.0:
-[github.com/maia-voice/voice-persona](https://github.com/maia-voice/voice-persona).
+[github.com/fuselinkapp/maia-voice-persona](https://github.com/fuselinkapp/maia-voice-persona).
