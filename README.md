@@ -41,8 +41,8 @@ new Audio(url).play();
 
 | Option   | Type           | Default                | Notes |
 |----------|----------------|------------------------|-------|
-| `apiKey` | `string`       | required               | Bearer token from the [Maia dashboard](https://maia.sh). |
-| `baseUrl`| `string`       | `https://api.maia.sh`  | Override for self-hosted / staging. |
+| `apiKey` | `string`       | required               | Bearer token from the [Maia dashboard](https://himaia.dev). |
+| `baseUrl`| `string`       | `https://api.himaia.dev`  | Override for self-hosted / staging. |
 | `fetch`  | `typeof fetch` | `globalThis.fetch`     | Inject for tests, polyfills, edge runtimes. |
 
 ### `client.listPersonas()` → `Promise<ListPersonasResult>`
@@ -115,7 +115,7 @@ Drop it into Vite or CRA, pass an `apiKey` prop, done.
 
 ## License
 
-Apache-2.0. See `LICENSE`. Made by [Maia](https://maia.sh).
+Apache-2.0. See `LICENSE`. Made by [Maia](https://himaia.dev).
 
 The `voice.persona` spec the API consumes is also Apache-2.0:
 [github.com/maia-voice/voice-persona](https://github.com/maia-voice/voice-persona).

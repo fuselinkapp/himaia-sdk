@@ -5,12 +5,12 @@ import type {
   ListPersonasResult,
 } from "./types.js";
 
-const DEFAULT_BASE_URL = "https://api.maia.sh";
+const DEFAULT_BASE_URL = "https://api.himaia.dev";
 
 export type MaiaClientOptions = {
   /** Bearer token from the Maia dashboard. */
   apiKey: string;
-  /** Override the API origin. Defaults to https://api.maia.sh. */
+  /** Override the API origin. Defaults to https://api.himaia.dev. */
   baseUrl?: string;
   /** Inject a custom fetch — useful for tests, edge runtimes, or polyfills. */
   fetch?: typeof fetch;
