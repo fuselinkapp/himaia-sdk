@@ -115,7 +115,7 @@ Drop it into Vite or CRA, pass an `apiKey` prop, done.
 
 ## License
 
-Apache-2.0. See `LICENSE`. Made by [himaia](https://himaia.dev).
+Apache-2.0. See `LICENSE`. Made by [himaia](https://himaia.dev) · © Fuse Link Inc..
 
 The `voice.persona` spec the API consumes is also Apache-2.0:
 [github.com/fuselinkapp/himaia-voice-persona](https://github.com/fuselinkapp/himaia-voice-persona).
