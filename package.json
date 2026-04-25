@@ -1,0 +1,39 @@
+{
+  "name": "@maia/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the Maia Voice API. Wraps /v1/generate and /v1/personas. Apache-2.0.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build && pnpm test"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^22.7.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/maia-voice/sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maia-voice/sdk.git"
+  }
+}
