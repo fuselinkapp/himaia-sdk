@@ -30,12 +30,12 @@ test("listPersonas returns {personas, starters}", async () => {
   const { fn, calls } = mockFetch({
     body: { personas: [{ id: "mentor" }], starters: [{ id: "himaia/warm_confidant" }] },
   });
-  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "himaia_test_x", fetch: fn });
   const result = await client.listPersonas();
   assert.equal(result.personas.length, 1);
   assert.equal(result.starters.length, 1);
   assert.equal(calls[0].url, "https://api.himaia.dev/v1/personas");
-  assert.equal(calls[0].init.headers.Authorization, "Bearer mvk_test_x");
+  assert.equal(calls[0].init.headers.Authorization, "Bearer himaia_test_x");
 });
 
 test("generate posts the right body and parses response headers", async () => {
@@ -47,7 +47,7 @@ test("generate posts the right body and parses response headers", async () => {
       "x-maia-charge-cents": "7",
     },
   });
-  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "himaia_test_x", fetch: fn });
   const result = await client.generate({
     mode: "voiced",
     persona: "himaia/warm_confidant",
@@ -71,7 +71,7 @@ test("non-2xx throws HimaiaError with status + parsed body message", async () =>
     status: 402,
     body: { message: "insufficient balance (need ≥5¢)", code: "low_balance" },
   });
-  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "himaia_test_x", fetch: fn });
   await assert.rejects(
     () => client.generate({ mode: "voiced", persona: "himaia/warm_confidant", input: "x" }),
     (err) =>
@@ -85,7 +85,7 @@ test("non-2xx throws HimaiaError with status + parsed body message", async () =>
 test("baseUrl override works", async () => {
   const { fn, calls } = mockFetch({ body: { personas: [], starters: [] } });
   const client = new HimaiaClient({
-    apiKey: "mvk_test_x",
+    apiKey: "himaia_test_x",
     baseUrl: "http://localhost:8080",
     fetch: fn,
   });
@@ -110,7 +110,7 @@ test("HimaiaError.fromResponse handles a body that fails to read", async () => {
     json: async () => ({}),
     blob: async () => new Blob([]),
   });
-  const client = new HimaiaClient({ apiKey: "mvk_test_x", fetch: fn });
+  const client = new HimaiaClient({ apiKey: "himaia_test_x", fetch: fn });
   await assert.rejects(
     () => client.listPersonas(),
     (err) => err instanceof HimaiaError && err.status === 500,
