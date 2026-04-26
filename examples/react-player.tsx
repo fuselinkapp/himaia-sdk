@@ -1,6 +1,6 @@
 // Minimal React example for himaia-sdk. Drop into a Vite/CRA project:
 //   npm install himaia-sdk
-// Then render <HimaiaPlayer apiKey="mvk_live_..." />.
+// Then render <HimaiaPlayer apiKey="maia_live_..." />.
 //
 // What it does: lists the v0.2 starter personas, lets the user pick one,
 // types an input, hits the API, and plays the returned audio. ~50 lines
