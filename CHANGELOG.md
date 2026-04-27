@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.1 — drop top-level format from CinematicRequest
+
+### Breaking
+
+- `CinematicRequest.format` is removed. The `format` knob (coach / pitch /
+  brief / …) was a leftover from the dropped coach product; the Voiced
+  architecture owns expressive shape via `scene.format` now. The server
+  silently ignores any leftover `format` field, so 0.3.0 callers keep
+  working at runtime — but the field no longer typechecks.
+
 ## 0.3.0 — persona roster pruning
 
 ### Breaking
