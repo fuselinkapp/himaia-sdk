@@ -49,7 +49,7 @@ new Audio(url).play();
 
 Returns `{ personas, starters }`:
 
-- `personas` — built-in TS roster used by the Pro pipeline.
+- `personas` — built-in TS roster used by the Cinematic pipeline.
 - `starters` — v0.2 YAML personas (`himaia/<slug>`) used by Voiced.
 
 ### `client.generate(req)` → `Promise<GenerateResult>`
@@ -65,7 +65,7 @@ Returns:
 ```ts
 {
   audio: Blob,                       // audio/wav
-  headers: Record<string, string>,   // lowercased x-maia-* response headers
+  headers: Record<string, string>,   // lowercased x-himaia-* response headers
   durationSeconds: number | null,
   chargeCents: number | null,
   callId: string | null,

@@ -70,14 +70,14 @@ export class HimaiaClient {
 
     const audio = await res.blob();
     const headers = lowercaseHeaders(res.headers);
-    const seconds = parseFloat(headers["x-maia-seconds"] ?? "");
-    const cents = parseInt(headers["x-maia-charge-cents"] ?? "", 10);
+    const seconds = parseFloat(headers["x-himaia-seconds"] ?? "");
+    const cents = parseInt(headers["x-himaia-charge-cents"] ?? "", 10);
     return {
       audio,
       headers,
       durationSeconds: Number.isFinite(seconds) ? seconds : null,
       chargeCents: Number.isFinite(cents) ? cents : null,
-      callId: headers["x-maia-call-id"] ?? null,
+      callId: headers["x-himaia-call-id"] ?? null,
     };
   }
 }

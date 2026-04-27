@@ -1,7 +1,7 @@
 // Public types for himaia-sdk. Mirrors the API contract documented in
 // `apps/api/src/routes/generate.ts` and `apps/api/src/routes/personas.ts`.
 
-export type Mode = "basic" | "voiced" | "pro";
+export type Mode = "basic" | "voiced" | "cinematic";
 export type Fidelity = "verbatim" | "shape" | "rewrite";
 export type Move =
   | "encourage"
@@ -41,7 +41,11 @@ export type BasicRequest = {
 
 export type VoicedRequest = {
   mode: "voiced";
-  persona: string; // "himaia/<slug>" or "himaia/<slug>@<version>"
+  // Either a registered starter id ("himaia/<slug>" or "himaia/<slug>@<version>"),
+  // or a full inline persona doc (your forked .persona.yaml as JSON). The runtime
+  // validates the inline doc against the v0.2 spec and runs it directly — no
+  // upload, no account state.
+  persona: string | Record<string, unknown>;
   input: string;
   scene?: SceneInput;
   voice?: string;
@@ -51,7 +55,7 @@ export type VoicedRequest = {
 };
 
 export type CinematicRequest = {
-  mode: "pro";
+  mode: "cinematic";
   context: string;
   persona_id?: string;
   format?: string;
@@ -69,7 +73,7 @@ export type GenerateRequest = BasicRequest | VoicedRequest | CinematicRequest;
 
 export type GenerateResult = {
   audio: Blob;
-  /** Raw response headers, lowercased. Includes x-maia-* fields. */
+  /** Raw response headers, lowercased. Includes x-himaia-* fields. */
   headers: Record<string, string>;
   durationSeconds: number | null;
   chargeCents: number | null;
@@ -77,7 +81,7 @@ export type GenerateResult = {
 };
 
 // Response of GET /v1/personas. Two parallel rosters: legacy built-in personas
-// (used by Pro pipeline) and the v0.2 YAML starters (used by Voiced).
+// (used by Cinematic pipeline) and the v0.2 YAML starters (used by Voiced).
 
 export type BuiltinPersona = {
   id: string;

@@ -42,9 +42,9 @@ test("generate posts the right body and parses response headers", async () => {
   const { fn, calls } = mockFetch({
     body: new Uint8Array([1, 2, 3, 4]),
     headers: {
-      "x-maia-call-id": "call_abc",
-      "x-maia-seconds": "4.123",
-      "x-maia-charge-cents": "7",
+      "x-himaia-call-id": "call_abc",
+      "x-himaia-seconds": "4.123",
+      "x-himaia-charge-cents": "7",
     },
   });
   const client = new HimaiaClient({ apiKey: "himaia_test_x", fetch: fn });
