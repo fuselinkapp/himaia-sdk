@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 — persona roster pruning
+
+### Breaking
+
+- `BuiltinPersona.category` is now `"builtin" | "user"` (was `"core" | "specialist" | "user"`). The `"specialist"` distinction is gone; everything that ships with himaia is `"builtin"`.
+- The `sales-closer`, `language-tutor`, and `fitness-coach` slugs were dropped from the built-in roster. They auto-redirect to `presenter` / `teacher` / `announcer` respectively at the API edge — your calls keep working, but `GET /v1/personas` no longer returns them.
+
 ## 0.2.1 — README
 
 - Document the Voiced `fidelity` field (was exported in 0.2.0 but undocumented).

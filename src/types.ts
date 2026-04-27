@@ -94,7 +94,7 @@ export type BuiltinPersona = {
   name: string;
   tagline: string;
   description: string;
-  category: "core" | "specialist" | "user";
+  category: "builtin" | "user";
   scope: "built_in" | "user";
   defaults: { tone: string; move: Move; voice?: string };
 };

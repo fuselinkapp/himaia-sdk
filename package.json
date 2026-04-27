@@ -1,6 +1,6 @@
 {
   "name": "himaia-sdk",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "TypeScript SDK for the himaia voice API. Wraps /v1/generate and /v1/personas. Apache-2.0.",
   "author": {
     "name": "Fuse Link Inc.",
