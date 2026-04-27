@@ -48,6 +48,12 @@ export type VoicedRequest = {
   persona: string | Record<string, unknown>;
   input: string;
   scene?: SceneInput;
+  // Per-call override for how closely the spoken turn follows `input`.
+  // verbatim: read input as-is (persona owns delivery only).
+  // shape (default behavior): tighten + fit to idiolect, keep key phrases.
+  // rewrite: input is a brief; persona writes freely.
+  // Wins over the persona's `voice.fidelity_default` and any scene override.
+  fidelity?: Fidelity;
   voice?: string;
   tone?: string;
   expressiveness?: number;
