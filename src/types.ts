@@ -85,8 +85,8 @@ export type GenerateResult = {
   callId: string | null;
 };
 
-// Response of GET /v1/personas. Two parallel rosters: legacy built-in personas
-// (used by Cinematic pipeline) and the v0.2 YAML starters (used by Voiced).
+// Response of GET /v1/personas. Two parallel rosters: built-in personas used
+// by the Cinematic pipeline, and the open v0.2 YAML starters used by Voiced.
 
 export type BuiltinPersona = {
   id: string;
