@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 — header rename + fidelity override
+
+### Breaking
+
+- Response headers renamed from `x-maia-*` to `x-himaia-*` to match the
+  product brand. Affects `result.callId`, `result.seconds`, `result.charge`,
+  `result.fidelity`, etc. — they will read as `null`/`0` against any
+  pre-0.2.0 server. Upgrade the API runtime alongside the SDK.
+
+### Added
+
+- `VoicedRequest.fidelity` — per-call override (`verbatim` | `shape` |
+  `rewrite`) that wins over the persona's `voice.fidelity_default` and
+  any scene override.
+
 ## 0.1.0 — initial release
 
 First public release. Apache-2.0.
