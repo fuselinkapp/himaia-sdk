@@ -58,7 +58,7 @@ Discriminated by `mode`:
 
 - `{ mode: "basic", text, voice?, tone?, ... }` — plain text → TTS.
 - `{ mode: "voiced", persona, input, scene?, fidelity?, voice?, ... }` — single-call persona-driven (recommended for chat / NPC apps). `fidelity` (`verbatim` | `shape` | `rewrite`) wins over the persona's `voice.fidelity_default` and any scene override.
-- `{ mode: "cinematic", context, persona_id?, format?, fidelity?, ... }` — three-stage cinematic pipeline. (Legacy `mode: "pro"` is still accepted for in-flight integrations.)
+- `{ mode: "cinematic", context, persona_id?, fidelity?, ... }` — three-stage cinematic pipeline. (Legacy `mode: "pro"` is still accepted for in-flight integrations.)
 
 Returns:
 

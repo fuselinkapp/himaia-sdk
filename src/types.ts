@@ -64,7 +64,6 @@ export type CinematicRequest = {
   mode: "cinematic";
   context: string;
   persona_id?: string;
-  format?: string;
   move?: Move;
   fidelity?: Fidelity;
   target_seconds?: number;
