@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 — README
+
+- Document the Voiced `fidelity` field (was exported in 0.2.0 but undocumented).
+- Switch the cinematic example from legacy `mode: "pro"` to `mode: "cinematic"`.
+
 ## 0.2.0 — header rename + fidelity override
 
 ### Breaking
