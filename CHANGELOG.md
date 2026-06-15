@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0 — typed inline personas (additive; backward-compatible)
+
+### Added
+
+- `VoicePersonaDoc` — an exported structural type for an inline `voice.persona`
+  v0.2.1 doc (including `voice.delivery_cues` and per-scene `direction`). Lets
+  you pass a typed, forked persona to `generate({ mode: "voiced", persona })`
+  instead of an untyped object.
+- `VoicedRequest.persona` is now `string | VoicePersonaDoc | Record<string, unknown>`
+  — existing `string` (starter id) and untyped-object callers are unchanged.
+
 ## 0.3.1 — drop top-level format from CinematicRequest
 
 ### Breaking
