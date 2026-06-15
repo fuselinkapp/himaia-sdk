@@ -20,4 +20,5 @@ export type {
   BuiltinPersona,
   StarterSummary,
   ListPersonasResult,
+  VoicePersonaDoc,
 } from "./types.js";
